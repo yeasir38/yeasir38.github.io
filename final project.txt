@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Project</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #buttonContainer {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #button1 {
+            background-color: #3498db; /* Blue */
+            color: #fff;
+        }
+
+        #button2 {
+            background-color: #e74c3c; /* Red */
+            color: #fff;
+        }
+
+        #button3 {
+            background-color: #2ecc71; /* Green */
+            color: #fff;
+        }
+
+        #button4 {
+            background-color: #f39c12; /* Orange */
+            color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Our Project</h1>
+
+    <div id="buttonContainer">
+        <button id="button1" onclick="showTable(1)">Fit Information</button>
+        <button id="button2" onclick="showTable(2)">Material Information</button>
+        <button id="button3" onclick="showTable(3)">Care Information</button>
+        <button id="button4" onclick="showTable(4)">Design Information</button>
+    </div>
+
+    <div id="tableContainer"></div>
+
+    <script>
+        function showTable(tableNumber) {
+            var tableContainer = document.getElementById('tableContainer');
+            tableContainer.innerHTML = ''; // Clear previous table if any
+
+            var table = document.createElement('table');
+
+            // Customize the table content based on the button clicked
+            switch (tableNumber) {
+                case 1:
+                    createTable(table, 2, 11, [
+                        ['Size', 'M'],
+                        ['Front length', '28.4 inch'],
+                        ['Shoulder width', '17.8 inch'],
+                        ['Chest', '39.2 inch'],
+                        ['Across front', '15.5 inch'],
+                        ['Bottom opening', '39.2 inch'],
+                        ['Sleeve length', '8.8 inch'],
+                        ['Armhole straight', '8.5 inch'],
+                        ['Bicep', '15 inch'],
+                        ['Sleeve opening', '13 inch'],
+                        ['Neck width', '7.2 inch']
+                    ]);
+                    break;
+                case 2:
+                    createTable(table, 2, 11, [
+                        ['Fabric composition', '98% cotton 2% elastane'],
+                        ['Wash', 'N/A'],
+                        ['Color', 'Blue'],
+                        ['Dye used', 'Reactive dye'],
+                        ['Origin of cotton', 'USA'],
+                        ['Spinning', 'Bangladesh'],
+                        ['Knitted', 'Bangladesh'],
+                        ['Manufactured In', 'Bangladesh'],
+                        ['Factory', 'Square Apparels Ltd'],
+                        ['Manufacturing Date', '20 December 2023'],
+                        ['Preferred Season', 'Summer']
+                    ]);
+                    break;
+                case 3:
+                    createTable(table, 1, 4, [
+                        ['Normal Wash'],
+                        ['Non Chlorine Bleach'],
+                        ['Warm Iron'],
+                        ['Do Not Dry Clean']
+                    ]);
+
+                    // Search Bing for care label instructions image
+                    var img = document.createElement('img');
+                    img.src = 'https://www.bing.com/images/search?q=care+label+instructions&form=HDRSC2';
+                    tableContainer.appendChild(img);
+                    break;
+                case 4:
+                    createTable(table, 2, 3, [
+                        ['Designer', 'Salina'],
+                        ['Print method', 'Screen Printing'],
+                        ['Printing material', 'Reactive Dye']
+                    ]);
+                    break;
+                default:
+                    break;
+            }
+
+            tableContainer.appendChild(table);
+        }
+
+        function createTable(table, columns, rows, data) {
+            for (let i = 0; i < rows; i++) {
+                var row = table.insertRow(i);
+                for (let j = 0; j < columns; j++) {
+                    var cell = row.insertCell(j);
+                    cell.innerHTML = `${data[i][j]}`;
+                }
+            }
+        }
+    </script>
+
+    <p>Date: <span id="currentDate"></span></p>
+
+    <script>
+        var currentDateElement = document.getElementById('currentDate');
+        var currentDate = new Date();
+        currentDateElement.textContent = currentDate.toDateString();
+    </script>
+
+</body>
+</html>
+
